@@ -33,6 +33,7 @@ class DAMaqKomaba():
         typeList=["l1","l2","l3","s1","s2","s3"]
         minorityReserveB, minorityReserveDA, M ,shiteiDict, fac, bunri, categoryToList=facultyData.main()
         self.categoryToList=categoryToList
+        self.M=M
         self.n=n
         DAMaqKomaba.main(self, submitcsv, acceptcsv, self.isDisplay, self.filename)
     def main(self, submitcsv, acceptcsv, isDisplay, filename):
@@ -63,6 +64,7 @@ class DAMaqKomaba():
         #     MRDictB[al[i]]=tempdict
         #step処理用の変数を追加する。
         #まず辞書を作る
+        M=self.M
         sdicval=[]
         for i in range(len(sl)):
             val=submitdata.loc[i][2:numberofPrefS].to_list()

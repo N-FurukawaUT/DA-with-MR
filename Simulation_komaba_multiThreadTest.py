@@ -61,7 +61,7 @@ def simulation(n):
     start=time.time() #開始時間を記録します。
     test=CreatePrefKomaba(karui,minorityReserveB, minorityReserveDA ,alpha,theta,M, accepter, submitter, n, valueDict=valueDict, isCutOff=isCutOff).main()
     if flag==True:
-        test0_5=choice_function(n, "choiceValueDict_exp.npy").main()
+        test0_5=choice_function(n, "choiceValueDict_smallest.npy").main()
     process_time=time.time()-start #終わった時の時間から開始時間を引いて、startとこの変数の間の処理時間を算出します。
     # print("選好の生成までにかかった時間は"+str(process_time)+"秒です")
     test2=DAmiRKomaba('MultiThread\created_submit_komaba'+choice_str+str(n)+'.csv','MultiThread\created_accept_komaba'+str(n)+'.csv',n, filename='submitmirResultKomaba'+str(n))
