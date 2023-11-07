@@ -1,4 +1,4 @@
-from createPreferenceKomabaTest import CreatePrefKomaba
+from createPreferenceKomaba import CreatePrefKomaba
 from DAMaqKomaba import DAMaqKomaba
 from import_data import facultyData
 import pandas as pd
@@ -9,7 +9,7 @@ from collections import OrderedDict as od
 minorityReserveB, minorityReserveDA, M, shiteiDict, fac, bunri, categoryToList=facultyData.main()
 
 n=0
-trial=1000
+trial=10
 batch=10
 multiply=0.01
 flag=True
@@ -22,9 +22,9 @@ accepter=[]
 for i in range(1002):
     submitter.append("student"+str(i+1))
 accepter=["法学部", "経済学部", "文学部", "教育学部", "工学部", "理学部" ,"農学部", "医学部", "数理科学部", "薬学部"]
-valueDF = pd.read_csv("value.csv", index_col=0, header=0)
+valueDF = pd.read_csv("import/value.csv", index_col=0, header=0)
 valueDict = valueDF.to_dict()
-tmp=np.load("fill.npy", allow_pickle=True)
+tmp=np.load("import/fill.npy", allow_pickle=True)
 fill_dict=tmp.item()
 
 
@@ -37,14 +37,14 @@ def PrefSim():
 karuiValueDict=dict(zip(fac,[0 for _ in range(len(fac))]))
 choiceValueDict=dict(zip(list(karui.keys()), [copy.deepcopy(karuiValueDict) for _ in range(6)]))
 if flag==True:
-    choiceValueDict=np.load("choiceValueDict_smallest.npy", allow_pickle=True).item()
+    choiceValueDict=np.load("import/choiceValueDict_smallest.npy", allow_pickle=True).item()
 
 #実データdict読み込み
-tmp=np.load("quota_dict.npy", allow_pickle=True)
+tmp=np.load("import/quota_dict.npy", allow_pickle=True)
 quota_dict=tmp.item()
-tmp=np.load("zenkarui_dict.npy", allow_pickle=True)
+tmp=np.load("import/zenkarui_dict.npy", allow_pickle=True)
 zenkarui_dict=tmp.item()
-tmp=np.load("shiteikarui_dict.npy", allow_pickle=True)
+tmp=np.load("import/shiteikarui_dict.npy", allow_pickle=True)
 shiteikarui_dict=tmp.item()
 
 
@@ -153,9 +153,9 @@ for n in range(trial):
     print("前回のregretとの差:", regret-former_regret)
     former_regret=copy.deepcopy(regret)
     if smallest_regret>regret:
-        np.save("choiceValueDict_smallest.npy",choiceValueDict)
+        np.save("import/choiceValueDict_smallest.npy",choiceValueDict)
         smallest_regret=regret
-    np.save("choiceValueDict_all.npy",choiceValueDict)
+    np.save("import/choiceValueDict_all.npy",choiceValueDict)
     print(f"現在の最小regret{smallest_regret}")
     for f in fac:
         for k in karui_list:

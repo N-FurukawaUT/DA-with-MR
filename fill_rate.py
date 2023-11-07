@@ -17,4 +17,4 @@ for f in fac:
         
 df = pd.DataFrame(list(fill_data.values()), columns=["MRの定員充足率", "MQの定員充足率"], index=list(fill_data.keys()))
 print(df)
-df.to_csv("fill_rate.csv", encoding="utf-8-sig")
+df.to_csv("Result/fill_rate.csv", encoding="utf-8-sig")

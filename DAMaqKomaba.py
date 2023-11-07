@@ -46,7 +46,7 @@ class DAMaqKomaba():
         secondCapacity=acceptdata['secondCapacity'].to_list()
         secondCapacity=dict(zip(al, secondCapacity))
         MRdfB=DAMaqKomaba.importMinorityReserve(self, "MultiThread\created_accept_komaba"+str(self.n)+"MinorityReserveB.csv")
-        MRdfDA=DAMaqKomaba.importMinorityReserve(self, r"2019ローデータ_枠早見表.csv")
+        MRdfDA=DAMaqKomaba.importMinorityReserve(self, r"import/2019ローデータ_枠早見表.csv")
         MRnum, MRlen=MRdfDA.shape
         MRDictDA=dict()
         for i in range(len(al)):

@@ -369,8 +369,6 @@ class CreatePrefKomaba():
         return submitNewDF
 
 if __name__=="__main__":
-
-    import time
     start=time.time() #開始時間を記録します。
     submitter=[]
     accepter=[]

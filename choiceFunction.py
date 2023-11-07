@@ -1,9 +1,5 @@
-from createPreferenceKomabaTest import CreatePrefKomaba
-from DAMaqKomaba import DAMaqKomaba
-from import_data import facultyData
 import pandas as pd
 import numpy as np
-import copy
 from collections import OrderedDict as od
 
 

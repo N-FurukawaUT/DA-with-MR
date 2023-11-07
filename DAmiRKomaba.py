@@ -25,7 +25,9 @@ class DAmiRKomaba():
         acceptcsv : str
             受け入れ側csvファイル名。同じく絶対パス、相対パスで指定してください。
         isDisplay : bool
-            結果の表示を細かく行うかどうかを指定するオプション引数。デフォルトは表示するようになっています。Falseに設定すればdict型で返ってきます。
+            結果の表示を細かく行うかどうかを指定するオプション引数。デフォルトは表示しないようになっています。Trueに設定すれば成形された形で返ってきます。
+        filename : str
+            ファイル名を指定するオプション引数。デフォルトではsubmitMaqResult.csvとなります。
         """
         self.isDisplay=isDisplay
         self.filename=filename
@@ -46,7 +48,7 @@ class DAmiRKomaba():
         secondCapacity=acceptdata['secondCapacity'].to_list()
         secondCapacity=dict(zip(al, secondCapacity))
         MRdfB=DAmiRKomaba.importMinorityReserve(self, "MultiThread\created_accept_komaba"+str(self.n)+"MinorityReserveB.csv")
-        MRdfDA=DAmiRKomaba.importMinorityReserve(self, r"2019ローデータ_枠早見表.csv")
+        MRdfDA=DAmiRKomaba.importMinorityReserve(self, r"import/2019ローデータ_枠早見表.csv")
         MRnum, MRlen=MRdfDA.shape
         MRDictDA=dict()
         for i in range(len(al)):

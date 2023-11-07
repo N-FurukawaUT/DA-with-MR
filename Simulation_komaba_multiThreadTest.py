@@ -1,7 +1,7 @@
 import pandas as pd
 from DAMaqKomaba import DAMaqKomaba
 from DAmiRKomaba import DAmiRKomaba
-from createPreferenceKomabaTest import CreatePrefKomaba
+from createPreferenceKomaba import CreatePrefKomaba
 from choiceFunction import choice_function
 from DAmiRKomaba import DAmiRKomaba
 from DAMaqKomaba import DAMaqKomaba
@@ -53,7 +53,7 @@ for i in ["MR", "MQ"]:
         temp[j]=[]
     leaveKaruiAllDict[i]=temp
 
-valueDF = pd.read_csv("value.csv", index_col=0, header=0)
+valueDF = pd.read_csv("import/value.csv", index_col=0, header=0)
 valueDict = valueDF.to_dict()
 
 
@@ -61,17 +61,17 @@ def simulation(n):
     start=time.time() #開始時間を記録します。
     test=CreatePrefKomaba(karui,minorityReserveB, minorityReserveDA ,alpha,theta,M, accepter, submitter, n, valueDict=valueDict, isCutOff=isCutOff).main()
     if flag==True:
-        test0_5=choice_function(n, "choiceValueDict_smallest.npy").main()
-    process_time=time.time()-start #終わった時の時間から開始時間を引いて、startとこの変数の間の処理時間を算出します。
+        test0_5=choice_function(n, "import/choiceValueDict_smallest.npy").main()
+    # process_time=time.time()-start #終わった時の時間から開始時間を引いて、startとこの変数の間の処理時間を算出します。
     # print("選好の生成までにかかった時間は"+str(process_time)+"秒です")
     test2=DAmiRKomaba('MultiThread\created_submit_komaba'+choice_str+str(n)+'.csv','MultiThread\created_accept_komaba'+str(n)+'.csv',n, filename='submitmirResultKomaba'+str(n))
-    process_time=time.time()-start #終わった時の時間から開始時間を引いて、startとこの変数の間の処理時間を算出します。
+    # process_time=time.time()-start #終わった時の時間から開始時間を引いて、startとこの変数の間の処理時間を算出します。
     # print("Minority reserve までにかかった時間は"+str(process_time)+"秒です")
     test3=DAMaqKomaba('MultiThread\created_submit_komaba'+choice_str+str(n)+'.csv','MultiThread\created_accept_komaba'+str(n)+'.csv',n, filename='submitMaqResultKomaba'+str(n))
-    process_time=time.time()-start #終わった時の時間から開始時間を引いて、startとこの変数の間の処理時間を算出します。
+    # process_time=time.time()-start #終わった時の時間から開始時間を引いて、startとこの変数の間の処理時間を算出します。
     # print("Majority quotaまでにかかった時間は"+str(process_time)+"秒です")
     betterWorseList, utilityMinusDict, mirCount, maqCount, leaveKaruiDict, dfFRmir, dfFRMaq=analyze('MultiThread\created_submit_komaba'+choice_str+str(n)+'.csv', 'MultiThread\submitmirResultKomaba'+str(n)+'.csv', 'MultiThread\submitMaqResultKomaba'+str(n)+'.csv','MultiThread\created_accept_komaba'+str(n)+'.csv', n).main()
-    process_time=time.time()-start #終わった時の時間から開始時間を引いて、startとこの変数の間の処理時間を算出します。
+    # process_time=time.time()-start #終わった時の時間から開始時間を引いて、startとこの変数の間の処理時間を算出します。
     # print("分析全体にかかった時間は"+str(process_time)+"秒です")
     print(str(n+1)+'回目終了')
     return betterWorseList, utilityMinusDict, mirCount, maqCount, leaveKaruiDict, dfFRmir, dfFRMaq

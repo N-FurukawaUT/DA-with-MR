@@ -4,7 +4,7 @@ from collections import OrderedDict as od
 
 class facultyData():
     def main():
-        data = pd.read_csv("2019ローデータ.csv", encoding="utf-8-sig")
+        data = pd.read_csv("import/2019ローデータ.csv", encoding="utf-8-sig")
         data2 = data.iloc[1:79, 0:10]
         first1 = data2["第1段階指定1科類"]
         first1.fillna(999, inplace=True)
@@ -192,4 +192,3 @@ class facultyData():
 
 
 minorityReserveB, minorityReserveDA, M, shiteiDict, fac, bunri, categoryToList=facultyData.main()
-print(M)
